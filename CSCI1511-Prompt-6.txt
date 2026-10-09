@@ -1,0 +1,19 @@
+In Chapter 13, the rocket ship fires bullets to destroy the alien spaceships. This is accomplished by 
+using the sprite utility groupcollide(). Search the pygame documentation or other resources on the web 
+and discuss this method does.
+
+In game programming, collisions happen when elements overlap. Without collisions, the elements would  
+pass through each other because there is no function to check for said collisions. The function 
+sprite.groupcollide() looks for collisions between the members in two groups. This function will compare 
+each bullet’s rect with each alien’s rect and return a dictionary containing the bullets and aliens that 
+have collided. We use this to record the exact moment that a bullet encounters an alien so we can make 
+an alien disappear immediately. Each key in the dictionary represents a bullet, while the corresponding 
+value is a hit alien. 
+
+The function _update_bullets(self) contains:
+collisions = pygame.sprite.groupcollide(
+                self.bullets, self.aliens, True, True)
+
+This line of code compares the positions of the bullets and aliens and identifies any overlapping objects. 
+When they overlap, groupcollide() adds a key-value pair to the dictionary it returns. The two true arguments 
+communicate with Pygame through instructing it to delete the bullets and aliens that have collided.
